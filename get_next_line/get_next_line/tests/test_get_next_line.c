@@ -39,7 +39,7 @@
 void	test_get_next_line(void)
 {
 	int fd;
-	char **line;
+	char *line;
 	
 	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
 	if (fd == -1)
@@ -50,16 +50,14 @@ void	test_get_next_line(void)
 	line = NULL;
 	//get_next_line(fd, line);
 	
-	int res = get_next_line(fd, line);
-	while (res > 0)
+	int res = get_next_line(fd, &line);
+	printf("%i\n", res);
+	if (res >= 0)
 	{
-		get_next_line(fd, line);
-		printf("%s\n", *line);
+		get_next_line(fd, &line);
+		printf("%s\n", line);
 	}
-	
-	
-	
-	
+
 	if (close(fd) < 0)
 		printf("not closed\n");
 	else
