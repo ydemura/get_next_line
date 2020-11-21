@@ -11,7 +11,7 @@
 #include "test_get_next_line.h"
 
 int main() //int argc, const char * argv[]
-{................
+{
 	// insert code here...
 	test_get_next_line();
 	

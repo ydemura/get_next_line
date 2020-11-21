@@ -275,6 +275,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"OTHER_CFLAGS[arch=*]" = (
+					"-Wall",
+					"-Wextra",
+					"-D",
+					"BUFFER_SIZE=32",
+					"-Werror",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
