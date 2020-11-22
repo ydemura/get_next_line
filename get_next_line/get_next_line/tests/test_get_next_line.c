@@ -45,23 +45,25 @@ void	test_get_next_line(void)
 	if (fd == -1)
 		printf("not opened\n");
 	else
-		printf("opened\n");
+		printf(".......................opened\n");
 	
 	line = NULL;
-	//get_next_line(fd, line);
 	
-	int res = get_next_line(fd, &line);
-	printf("%i\n", res);
-	if (res >= 0)
+	int res;
+	res = 0;
+	while (res != -1)
 	{
-		get_next_line(fd, &line);
-		printf("%s\n", line);
+		res = get_next_line(fd, &line);
+		printf("int result: %i\n", res);
+		printf("line in test:\n%s\n", line);
 	}
+//	printf("int result: %i\n", res);
+//	printf("line in test:\n%s\n", line);
 
 	if (close(fd) < 0)
 		printf("not closed\n");
 	else
-		printf("closed\n");
+		printf(".......................closed\n");
 	
 }
 

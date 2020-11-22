@@ -16,66 +16,121 @@
 //Parameters 	#1. file descriptor for reading
 //				#2. The value of what has been read
 
-static char *malloc_it(char *str, int len)
+int		custom_len(char *str)
 {
-	char *new_str;
-	new_str = malloc((len + 1) * sizeof(char));
-	if (new_str == NULL)
+	int i;
+	
+	i = 0;
+	while (str[i] != '\n')
 	{
-		return (0);
-	}
-	int i = 0;
-	while (str[i] != '\0')
-	{
-		new_str[i] = str[i];
 		i++;
 	}
-	//free(str);
-	return (new_str);
+	return (i);
 }
 
+int 	my_strlen(char *str)
+{
+	int i;
+		
+		i = 0;
+		while (str[i])
+		{
+			i++;
+		}
+		return (i);
+}
+
+void	*my_memcpy(void *restrict dst, const void *restrict src, size_t n)
+{
+	unsigned	int		i;
+	unsigned	char	*destination;
+	unsigned	char	*sorce;
+
+	destination = (unsigned char *)dst;
+	sorce = (unsigned char *)src;
+	i = 0;
+	while (i < n && (dst != (void *)0 || src != (void *)0))
+	{
+		destination[i] = sorce[i];
+		i++;
+	}
+	return (dst);
+}
 
 int		get_next_line(int fd, char **line)
 {
-	size_t res = 0;
-//	size_t len = 0;
-	char *str = NULL;
+	int res = 0;
+	static char *str = NULL;
 	char *temp = NULL;
+	int cnt = BUFFER_SIZE;
 	
-	int len = 1;
-	int i = 0;
-	str = malloc((len + 1) * sizeof(char));
+//	static data_type var_name = var_value;
+	static char *counter;
+	
+	int len = 2;
+	int i = 1;
+	str = malloc(len * sizeof(char));
 	if (str == NULL)
 	{
 		return (0);
 	}
 	
-	while ((res = read(fd, str, BUFFER_SIZE))) //if not error of EOF it is == 1(true)
+	res = (int)read(fd, str, cnt);
+	counter = str;
+	*line = counter;
+	while (BUFFER_SIZE != 0)
 	{
-		*line = str;
-		//printf("%s\n", str);
-		//printf("%s", *line);
-		if ((unsigned char)*line == '\n')
+		if (res == -1)
 		{
-			return ((int)res);
-		}
-		line++;
-		str++;
-		i++;
-		if (i >= len)
-		{
-			len = len * 2;
-			printf("%s\n", str);
-			str[i] = '\0';
-			temp = malloc_it(str, len);
 			free(str);
-			str = temp;
+			return (-1);
 		}
+		else if (res == 0)
+		{
+			free(str);
+			return (0);
+		}
+		else
+		{
+			i++;
+			if (i >= len)
+			{
+				str = *line;
+				len = len + 1;
+				temp = calloc(len, sizeof(char));
+				if (temp == NULL)
+					return (0);
+				str = my_memcpy(temp, str, len - 1);
+				str = *line + len - 1;
+			}
+			if ((unsigned char)*str == '\n')
+			{
+				counter = my_memcpy(counter, (str + 1), my_strlen(str));
+				len = custom_len(*line);
+				str = malloc(len * sizeof(char));
+				if (temp == NULL)
+					return (0);
+				my_memcpy(str, temp, len);
+				*line = str;
+				printf("counter:%p\n", counter);
+				free(temp);
+				free(str);
+				return (0);
+			}
+		}
+		cnt--;
 	}
-	
-	return ((int)res);
+	return (0);
 }
+//       READ
+//Returns: How many bytes were actually read
+//return Number of bytes read on success
+//return 0 on reaching end of file
+//return -1 on error
+//return -1 on signal interrupt
 
+
+// subject
 //Return value 1 : A line has been read
 //			   0 : EOF has been reached
 //			  -1 : An error happened
