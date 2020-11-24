@@ -277,10 +277,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				"OTHER_CFLAGS[arch=*]" = (
 					"-Wall",
+					"-Werror",
 					"-Wextra",
 					"-D",
-					"BUFFER_SIZE=32",
-					"-Werror",
+					"BUFFER_SIZE=4",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

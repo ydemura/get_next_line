@@ -41,7 +41,7 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
+	fd = open("/Users/julia/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
 	if (fd == -1)
 		printf("not opened\n");
 	else
@@ -50,12 +50,15 @@ void	test_get_next_line(void)
 	line = NULL;
 	
 	int res;
-	res = 0;
-	while (res != -1)
+	res = 1;
+	while (res > 0)
 	{
 		res = get_next_line(fd, &line);
 		printf("int result: %i\n", res);
 		printf("line in test:\n%s\n", line);
+		free(line);
+		if (res != 1)
+			break;
 	}
 //	printf("int result: %i\n", res);
 //	printf("line in test:\n%s\n", line);
