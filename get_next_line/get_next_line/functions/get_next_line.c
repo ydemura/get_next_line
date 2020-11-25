@@ -53,6 +53,7 @@ void	*my_memcpy(void *restrict dst, const void *restrict src, size_t n)
 		destination[i] = sorce[i];
 		i++;
 	}
+	destination[i] = '\0';
 	return (dst);
 }
 
@@ -84,77 +85,103 @@ char	*my_strjoin(char *s1, char *s2, unsigned int start)
 	return (join);
 }
 
-typedef struct	s_memory
+typedef struct	s_list
 {
-	char already_read[BUFFER_SIZE];
-	int len_already_read;
-}				t_memory;
-static t_memory memory = {.len_already_read = 0};
+	struct	s_list *next;
+	int		len;
+	int		start;
+	int		fd;
+	char 	buff[BUFFER_SIZE];
+}				t_list;
+
 
 int		get_next_line(int fd, char **line)
 {
-	char *buff;
-	char *old_buff;
-	int read_len;
-	int len;
-	char *start;
-	char *next_start;
-
-	start = 0;
-	len = BUFFER_SIZE * 2;
-	buff = malloc(len * sizeof(char));
-	if (buff == NULL)
-		return (0);
-	my_memcpy(buff, memory.already_read, memory.len_already_read);
-	start = buff + memory.len_already_read;
-	while (1)
-	{
-		if (start + BUFFER_SIZE > buff + len)
-		{
-			old_buff = buff;
-			len = len * 2;
-			buff = malloc(len * sizeof(char));
-			if (buff == NULL)
-			{
-				free(old_buff);
-				return (0);
-			}
-			my_memcpy(buff, old_buff, len / 2);
-			free(old_buff);
-			start = buff + len / 2;
-		}
-		read_len = (int)read(fd, start, BUFFER_SIZE);
-		if (read_len == -1)
-		{
-			*line = NULL;
-			free(buff);
-			return (-1);
-		}
-		if (read_len < BUFFER_SIZE)
-		{
-			start[read_len] = '\0';
-			*line = buff;
-			return (0);
-		}
-		next_start = start + BUFFER_SIZE;
-		while (start < next_start)
-		{
-			if (*start == '\n')
-			{
-				*line = buff;
-				*start = '\0';
-				memory.len_already_read	= (int)(next_start - start - 1);
-				my_memcpy(memory.already_read, start + 1, memory.len_already_read);
-				////////// todo
-				return (1);
-			}
-			start++;
-		}
-	}
-
-
+	
+	
+	
 	return (0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//typedef struct	s_memory
+//{
+//	int len;
+//	char str[BUFFER_SIZE + 1];
+//}				t_memory;
+//
+//int		get_next_line(int fd, char **line)
+//{
+//	static t_memory memory = {.len = 0};
+//	static char str[BUFFER_SIZE + 1];
+//	char *buff;
+//
+//	int sbstr_len = 0;
+//	int res = 1;
+//
+//	while (res > 0)
+//	{
+//		buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+//		if (buff == NULL)
+//		{
+//			return (0);
+//		}
+//		*line = NULL;
+//
+//		if (!*str) //if str is already empty - read further
+//		{
+//
+//			res = (int)read(fd, buff, BUFFER_SIZE);
+//			if (res == 0)
+//			{
+//				return (0);
+//			}
+//			my_memcpy(str, buff, BUFFER_SIZE);
+//		}
+//		else //or str has \n or does not
+//		{
+//			buff = my_memcpy(buff, str, BUFFER_SIZE);
+//		}
+//		while (memory.len < BUFFER_SIZE)
+//		{
+//			if (buff[sbstr_len] == '\n' && buff[sbstr_len])
+//			{
+//				*line = malloc((sbstr_len + 1) * sizeof(char));
+//				if (*line == NULL)
+//				{
+//					return (0);
+//				}
+//				*line = my_memcpy(*line, buff, sbstr_len);
+//				my_memcpy(str, buff + sbstr_len + 1, BUFFER_SIZE - sbstr_len);
+//				return (1);
+//			}
+//			sbstr_len++;
+//		}
+//	}
+//	return (0);
+//}
 
 
 
@@ -170,6 +197,127 @@ int		get_next_line(int fd, char **line)
 //Return value 1 : A line has been read
 //			   0 : EOF has been reached
 //			  -1 : An error happened
+
+
+
+
+
+
+//buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+//if (buff == NULL)
+//{
+//	return (0);
+//}
+//*line = NULL;
+//
+//if (!*str) //if str is already empty - read further
+//{
+//
+//	res = (int)read(fd, buff, BUFFER_SIZE);
+//	my_memcpy(str, buff, BUFFER_SIZE);
+//}
+//else //or str has \n or does not
+//{
+//	buff = my_memcpy(buff, str, BUFFER_SIZE);
+//}
+//while (memory.len < BUFFER_SIZE)
+//{
+//	if (buff[sbstr_len] == '\n' && buff[sbstr_len])
+//	{
+//		*line = malloc((sbstr_len + 1) * sizeof(char));
+//		if (*line == NULL)
+//		{
+//			return (0);
+//		}
+//		*line = my_memcpy(*line, buff, sbstr_len);
+//		my_memcpy(str, buff + sbstr_len + 1, BUFFER_SIZE - sbstr_len);
+//		return (1);
+//	}
+//	sbstr_len++;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//typedef struct	s_memory
+//{
+//	char already_read[BUFFER_SIZE];
+//	int len_already_read;
+//}				t_memory;
+//static t_memory memory = {.len_already_read = 0};
+//
+//int		get_next_line(int fd, char **line)
+//{
+//	char *buff;
+//	char *old_buff;
+//	int read_len;
+//	int len;
+//	char *start;
+//	char *next_start;
+//
+//	start = 0;
+//	len = BUFFER_SIZE * 2;
+//	buff = malloc(len * sizeof(char));
+//	if (buff == NULL)
+//		return (0);
+//	my_memcpy(buff, memory.already_read, memory.len_already_read);
+//	start = buff + memory.len_already_read;
+//	while (1)
+//	{
+//		if (start + BUFFER_SIZE > buff + len)
+//		{
+//			old_buff = buff;
+//			len = len * 2;
+//			buff = malloc(len * sizeof(char));
+//			if (buff == NULL)
+//			{
+//				free(old_buff);
+//				return (0);
+//			}
+//			my_memcpy(buff, old_buff, len / 2);
+//			free(old_buff);
+//			start = buff + len / 2;
+//		}
+//		read_len = (int)read(fd, start, BUFFER_SIZE);
+//		if (read_len == -1)
+//		{
+//			*line = NULL;
+//			free(buff);
+//			return (-1);
+//		}
+//		if (read_len < BUFFER_SIZE)
+//		{
+//			start[read_len] = '\0';
+//			*line = buff;
+//			return (0);
+//		}
+//		next_start = start + BUFFER_SIZE;
+//		while (start < next_start)
+//		{
+//			if (*start == '\n')
+//			{
+//				*line = buff;
+//				*start = '\0';
+//				memory.len_already_read	= (int)(next_start - start - 1);
+//				my_memcpy(memory.already_read, start + 1, memory.len_already_read);
+//				return (1);
+//			}
+//			start++;
+//		}
+//	}
+//
+//
+//	return (0);
+
 
 
 

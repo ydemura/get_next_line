@@ -54,8 +54,8 @@ void	test_get_next_line(void)
 	while (res > 0)
 	{
 		res = get_next_line(fd, &line);
-		printf("int result: %i\n", res);
-		printf("line in test:\n%s\n", line);
+		printf("int %i", res);
+		printf(":  %s\n", line);
 		free(line);
 		if (res != 1)
 			break;
