@@ -63,26 +63,31 @@ void	test_get_next_line(void)
 	while (res > 0)
 	{
 		res = get_next_line(fd, &line);
-		printf("int %i", res);
-		printf(":  %s\n", line);
+		printf("int %i: %s\n", res, line);
 		free(line);
 		if (res != 1)
 			break;
 	}
-	
-//	hellooo
-//	world
-//	herewego
-//	d
-//	d
-//	d
 
+//TESTS:
+	
+//1: B_S = 8
 
+//hello
+//world got //wo:rld -> 8
+//herewego
+//d
+//d
+//d
 	
+//1: B_S = 5, 6, 7,
 	
-	
-//	printf("int result: %i\n", res);
-//	printf("line in test:\n%s\n", line);
+//hello
+//world
+//herewego
+//d
+//d
+//d
 
 	if (close(fd) < 0)
 		printf("not closed\n");

@@ -28,16 +28,18 @@ int		ft_strlen(const char *str)
 }
 
 
-int		custom_len(char *str)
+int		last_n_in_buff(char *str)
 {
 	int i;
 	
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i])
 	{
-		i++;
+			i++;
 	}
-	return (i);
+	if (str[i - 1] == '\n')
+		return (0);
+	return (1);
 }
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
@@ -61,14 +63,12 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 void	*after_n_memcpy(char *dst, char *src, size_t n)
 {
 	unsigned	int		i;
-//	unsigned	int		j;
 	unsigned	char	*destination;
 	unsigned	char	*sorce;
 
 	destination = (unsigned char *)dst;
 	sorce = (unsigned char *)src;
 	i = 0;
-//	j = 0;
 	while (*sorce != '\n')
 	{
 		sorce++;
@@ -117,10 +117,11 @@ typedef struct	s_memory
 	int len;
 	char left[BUFFER_SIZE + 1];
 	char *collect;
+	char buff[BUFFER_SIZE + 1];
 	
 }				t_memory;
 
-int		find_line(char *buff, char **line) //t_memory memory
+int		find_line(char *buff, char **line)
 {
 	
 	int len_substr = 0;
@@ -139,48 +140,104 @@ int		find_line(char *buff, char **line) //t_memory memory
 	return (0);
 }
 
+//with static buff WORKING
+
 int		get_next_line(int fd, char **line)
 {
 	static t_memory memory = {.len = 0};
-	char *buff;
 	int res;
 	int buff_s = BUFFER_SIZE;
 	res = 1;
-	buff = malloc((buff_s + 1) * sizeof(char));
 	*line = NULL;
 	int i = 0;
 	while ( res > 0)
 	{
-		
+
 		if (!*(memory.left) && i == 0)
 		{
-			res = (int)read(fd, buff, BUFFER_SIZE);
-			memory.collect = ft_strjoin(memory.left, buff);
+			res = (int)read(fd, memory.buff, BUFFER_SIZE);
+			if (res == 0)
+			{
+				*line = NULL;
+				return (0);
+			}
+			memory.buff[BUFFER_SIZE] = '\0';
+			memory.collect = ft_strjoin(memory.left, memory.buff);
 		}
 		else
 		{
 			if (i == 0)
 			{
-				ft_memcpy(buff, memory.left, buff_s);
+				ft_memcpy(memory.buff, memory.left, buff_s);
 				ft_memcpy(memory.collect, memory.left, ft_strlen(memory.left));
 			}
 			else
 			{
-				res = (int)read(fd, buff, BUFFER_SIZE);
-				memory.collect = ft_strjoin(memory.collect, buff);
+				res = (int)read(fd, memory.buff, BUFFER_SIZE);
+				memory.collect = ft_strjoin(memory.collect, memory.buff);
 			}
 		}
 		if (memory.collect != NULL && find_line(memory.collect, line) == 1)
 		{
-			after_n_memcpy(memory.left, buff, BUFFER_SIZE);
+			after_n_memcpy(memory.left, memory.buff, BUFFER_SIZE);
 			memory.left[ft_strlen(memory.left)] = '\0';
 			return (1);
 		}
-//		buff_s += buff_s;
 		i++;
 	}
 	return (0);
 }
+
+
+//with mallocing buff WORKING
+
+//int		get_next_line(int fd, char **line)
+//{
+//	static t_memory memory = {.len = 0};
+//	char *buff;
+//	int res;
+//	int buff_s = BUFFER_SIZE;
+//	res = 1;
+//	buff = malloc((buff_s + 1) * sizeof(char));
+//	*line = NULL;
+//	int i = 0;
+//	while ( res > 0)
+//	{
+//
+//		if (!*(memory.left) && i == 0)
+//		{
+//			res = (int)read(fd, buff, BUFFER_SIZE);
+////			if (res == 0)
+////			{
+////				*line = NULL;
+////				return (0);
+////			}
+//			buff[BUFFER_SIZE] = '\0';
+//			memory.collect = ft_strjoin(memory.left, buff);
+//		}
+//		else
+//		{
+//			if (i == 0)
+//			{
+//				ft_memcpy(buff, memory.left, buff_s);
+//				ft_memcpy(memory.collect, memory.left, ft_strlen(memory.left));
+//			}
+//			else
+//			{
+//				res = (int)read(fd, buff, BUFFER_SIZE);
+//				memory.collect = ft_strjoin(memory.collect, buff);
+//			}
+//		}
+//		if (memory.collect != NULL && find_line(memory.collect, line) == 1)
+//		{
+//			after_n_memcpy(memory.left, buff, BUFFER_SIZE);
+//			memory.left[ft_strlen(memory.left)] = '\0';
+//			return (1);
+//		}
+//		i++;
+//	}
+//	return (0);
+//}
 
 
 
