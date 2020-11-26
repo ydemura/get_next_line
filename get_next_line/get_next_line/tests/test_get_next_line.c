@@ -26,9 +26,18 @@
 //#1. file descriptor for reading
 //#2. The value of what has been read
 
-//Return value 	1 : A line has been read
-//				0 : EOF has been reached
-//			   -1 : An error happened
+//       READ
+//Returns: How many bytes were actually read
+//return Number of bytes read on success
+//return 0 on reaching end of file
+//return -1 on error
+//return -1 on signal interrupt
+
+
+// subject
+//Return value 1 : A line has been read
+//			   0 : EOF has been reached
+//			  -1 : An error happened
 
 //	fd: file descripter
 //	buf: buffer to read data from
@@ -41,7 +50,7 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-	fd = open("/Users/julia/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
+	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
 	if (fd == -1)
 		printf("not opened\n");
 	else
@@ -60,6 +69,18 @@ void	test_get_next_line(void)
 		if (res != 1)
 			break;
 	}
+	
+//	hellooo
+//	world
+//	herewego
+//	d
+//	d
+//	d
+
+
+	
+	
+	
 //	printf("int result: %i\n", res);
 //	printf("line in test:\n%s\n", line);
 
