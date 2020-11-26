@@ -42,7 +42,7 @@ int		last_n_in_buff(char *str)
 	return (1);
 }
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
 	unsigned	int		i;
 	unsigned	char	*destination;
@@ -57,10 +57,10 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 		i++;
 	}
 	destination[i] = '\0';
-	return (dst);
+//	return (dst);
 }
 
-void	*after_n_memcpy(char *dst, char *src, size_t n)
+void	after_n_memcpy(char *dst, char *src, size_t n)
 {
 	unsigned	int		i;
 	unsigned	char	*destination;
@@ -80,7 +80,7 @@ void	*after_n_memcpy(char *dst, char *src, size_t n)
 		i++;
 	}
 	destination[i] = '\0';
-	return (dst);
+//	return (dst);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -116,6 +116,7 @@ typedef struct	s_memory
 	char *collect;
 	char buff[BUFFER_SIZE + 1];
 	int res;
+	int i;
 	
 }				t_memory;
 
@@ -130,7 +131,7 @@ int		find_line(char *buff, char **line)
 			*line = malloc((len_substr + 1) * sizeof(char));
 			if (*line == NULL)
 				return (0);
-			*line = ft_memcpy(*line, buff, len_substr);
+			ft_memcpy(*line, buff, len_substr); // *line = not needed as I made ft_memcopy void not void*
 			return (1);
 		}
 		len_substr++;
@@ -143,15 +144,13 @@ int		find_line(char *buff, char **line)
 int		get_next_line(int fd, char **line)
 {
 	static t_memory memory;
-//	int memory.res;
-	int i;
 
 	memory.res = 1;
 	*line = NULL;
-	i = 0;
+	memory.i = 0;
 	while ( memory.res > 0)
 	{
-		if (!*(memory.left) && i == 0)
+		if (!*(memory.left) && memory.i == 0)
 		{
 			memory.res = (int)read(fd, memory.buff, BUFFER_SIZE);
 			if (memory.res == 0)
@@ -161,7 +160,7 @@ int		get_next_line(int fd, char **line)
 		}
 		else
 		{
-			if (i == 0)
+			if (memory.i == 0)
 			{
 				ft_memcpy(memory.buff, memory.left, BUFFER_SIZE);
 				ft_memcpy(memory.collect, memory.left, ft_strlen(memory.left));
@@ -178,7 +177,7 @@ int		get_next_line(int fd, char **line)
 			memory.left[ft_strlen(memory.left)] = '\0';
 			return (1);
 		}
-		i++;
+		memory.i++;
 	}
 	return (0);
 }
