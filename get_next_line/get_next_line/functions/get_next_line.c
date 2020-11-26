@@ -91,8 +91,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-//	if (!s1 || !s2)
-//		return (0);
 	new_str = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1)
 	* sizeof(char));
 	if (new_str == NULL)
@@ -146,10 +144,11 @@ int		get_next_line(int fd, char **line)
 {
 	static t_memory memory = {.len = 0};
 	int res;
-	int buff_s = BUFFER_SIZE;
+	int i;
+
 	res = 1;
 	*line = NULL;
-	int i = 0;
+	i = 0;
 	while ( res > 0)
 	{
 
@@ -157,10 +156,7 @@ int		get_next_line(int fd, char **line)
 		{
 			res = (int)read(fd, memory.buff, BUFFER_SIZE);
 			if (res == 0)
-			{
-				*line = NULL;
 				return (0);
-			}
 			memory.buff[BUFFER_SIZE] = '\0';
 			memory.collect = ft_strjoin(memory.left, memory.buff);
 		}
@@ -168,7 +164,7 @@ int		get_next_line(int fd, char **line)
 		{
 			if (i == 0)
 			{
-				ft_memcpy(memory.buff, memory.left, buff_s);
+				ft_memcpy(memory.buff, memory.left, BUFFER_SIZE);
 				ft_memcpy(memory.collect, memory.left, ft_strlen(memory.left));
 			}
 			else
