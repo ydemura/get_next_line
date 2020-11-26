@@ -112,10 +112,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 typedef struct	s_memory
 {
-	int len;
 	char left[BUFFER_SIZE + 1];
 	char *collect;
 	char buff[BUFFER_SIZE + 1];
+	int res;
 	
 }				t_memory;
 
@@ -142,20 +142,19 @@ int		find_line(char *buff, char **line)
 
 int		get_next_line(int fd, char **line)
 {
-	static t_memory memory = {.len = 0};
-	int res;
+	static t_memory memory;
+//	int memory.res;
 	int i;
 
-	res = 1;
+	memory.res = 1;
 	*line = NULL;
 	i = 0;
-	while ( res > 0)
+	while ( memory.res > 0)
 	{
-
 		if (!*(memory.left) && i == 0)
 		{
-			res = (int)read(fd, memory.buff, BUFFER_SIZE);
-			if (res == 0)
+			memory.res = (int)read(fd, memory.buff, BUFFER_SIZE);
+			if (memory.res == 0)
 				return (0);
 			memory.buff[BUFFER_SIZE] = '\0';
 			memory.collect = ft_strjoin(memory.left, memory.buff);
@@ -169,7 +168,7 @@ int		get_next_line(int fd, char **line)
 			}
 			else
 			{
-				res = (int)read(fd, memory.buff, BUFFER_SIZE);
+				memory.res = (int)read(fd, memory.buff, BUFFER_SIZE);
 				memory.collect = ft_strjoin(memory.collect, memory.buff);
 			}
 		}
