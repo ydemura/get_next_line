@@ -97,3 +97,5 @@ void	test_get_next_line(void)
 	else
 		printf(".......................closed\n");
 }
+
+

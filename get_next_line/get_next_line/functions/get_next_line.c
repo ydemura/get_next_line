@@ -161,7 +161,8 @@ int		get_next_line(int fd, char **line)
 			}
 			else
 			{
-				*line = ft_strdup(memory.left);
+				*line = ft_strjoin(*line, memory.left);
+//				ft_strdup(memory.left);
 				clean_string(memory.left);
 			}
 			  
