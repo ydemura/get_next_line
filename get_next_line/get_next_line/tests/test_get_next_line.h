@@ -6,6 +6,10 @@
 //  Copyright © 2020 Yuliia Demura. All rights reserved.
 //
 
+
+
+# include <sys/types.h>
+
 #ifndef test_get_next_line_h
 #define test_get_next_line_h
 
