@@ -50,7 +50,27 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.dict", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
+	
+
+	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
+	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
+//
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
+//
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+//
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
+//
+//
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
+	
+	
+	
+		fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
+	
 	if (fd == -1)
 		printf("not opened\n");
 	else
@@ -60,56 +80,20 @@ void	test_get_next_line(void)
 	
 	int res;
 	res = 1;
+	int i = 1;
 	while (res > 0)
 	{
 		res = get_next_line(fd, &line);
-		printf("int %i: %s\n", res, line);
+		printf("line %i: %s\n", i, line);
 		free(line);
+		i++;
 		if (res != 1)
 			break;
 	}
 
-//TESTS:
-	
-//1: B_S = 8
-
-//hello
-//world got //wo:rld -> 8
-//herewego
-//d
-//d
-//d
-	
-//1: B_S = 5, 6, 7,
-	
-//hello
-//world
-//herewego
-//d
-//d
-//d
 
 	if (close(fd) < 0)
 		printf("not closed\n");
 	else
 		printf(".......................closed\n");
-	
 }
-
-
-// from rush 02
-
-//int		ft_check_size(int fd)
-//{
-//	int ret;
-//	char buf[500 + 1];
-//	int len;
-//
-//	len = 0;
-//	while((ret = read(fd, buf, 500)))
-//	{
-//		buf[ret] = '\0';
-//		len = len + ret;
-//	}
-//	return(len);
-//}
