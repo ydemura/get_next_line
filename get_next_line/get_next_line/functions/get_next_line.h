@@ -22,7 +22,7 @@
 int		get_next_line(int fd, char **line);
 int		ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	*after_n_memcpy(char *dst, char *src, size_t n);
+//void	after_n_memcpy(char *dst, char *src, size_t n);
 char	*ft_strdup_till_n(const char *s1, int len);
 char	*ft_strdup(const char *s1);
 
