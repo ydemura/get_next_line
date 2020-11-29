@@ -119,6 +119,23 @@ void	after_n_memcpy(char *left, char *temp, unsigned int n)
 //	return (0);
 //}
 
+
+
+void	clean_string(t_memory *memory)
+{
+	int len;
+	int i;
+	
+	len = ft_strlen(memory->left);
+	i = 0;
+
+	while (i < len)
+	{
+		(memory->left)[i] = '\0';
+		i++;
+	}
+}
+
 int cut_line_and_left(char **line, t_memory *memory, int n, char *temp)
 {
 	while (temp[n] != '\0')
@@ -158,19 +175,22 @@ int	ft_search_end_of_line(char **line, t_memory *memory)
 	return (0);
 }
 
-void	clean_string(t_memory *memory)
+int check_static_for_n(t_memory *memory, char **line)
 {
-	int len;
-	int i;
-	
-	len = ft_strlen(memory->left);
-	i = 0;
-
-	while (i < len)
+	int n;
+	n = 0;
+	while (memory->left[n] != 0)
 	{
-		(memory->left)[i] = '\0';
-		i++;
+		if (memory->left[n] == '\n')
+		{
+			*line = ft_strdup_till_n(memory->left, n);
+			after_n_memcpy(memory->left, memory->left, n);
+			n++;
+		}
 	}
+	
+	
+	return (0);
 }
 
 int		ft_read(int fd, t_memory *memory)
@@ -196,10 +216,15 @@ int		get_next_line(int fd, char **line)
 		{
 			if ((memory.res = ft_read(fd, &memory)) == -1)
 				return (-1);
-			if (memory.res == 0)
+			if (check_static_for_n(&memory, line) == 1)
+			{
+				return (1);
+			}
+			if (memory.res == 0) //for \0 at the end not null in last line
 			{
 				*line = ft_strjoin(*line, memory.left);
 			}
+			
 		}
 		else
 		{
