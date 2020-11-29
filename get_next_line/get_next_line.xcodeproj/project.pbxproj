@@ -28,12 +28,12 @@
 /* Begin PBXFileReference section */
 		0D00A2FB2572B023003B7860 /* only_newline.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = only_newline.txt; sourceTree = "<group>"; };
 		0D00A2FC2572B023003B7860 /* bar.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bar.txt; sourceTree = "<group>"; };
-		0D00A2FD2572B023003B7860 /* 64bit_paragraph.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 64bit_paragraph.txt; sourceTree = "<group>"; };
 		0D00A2FE2572B023003B7860 /* fewchar_perline.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fewchar_perline.txt; sourceTree = "<group>"; };
 		0D00A2FF2572B023003B7860 /* normal.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = normal.txt; sourceTree = "<group>"; };
 		0D00A3002572B023003B7860 /* 64bit_line.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 64bit_line.txt; sourceTree = "<group>"; };
 		0D00A3012572B023003B7860 /* empty.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty.txt; sourceTree = "<group>"; };
 		0D00A3022572B023003B7860 /* long_line.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = long_line.txt; sourceTree = "<group>"; };
+		0D2599A32573DB0E0044CADD /* 64bit_paragraph.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = 64bit_paragraph.txt; sourceTree = "<group>"; };
 		0DC3570725695DC8004FB1CB /* get_next_line */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = get_next_line; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC3570A25695DC8004FB1CB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		0DC3571325695E09004FB1CB /* get_next_line_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_next_line_utils.c; sourceTree = "<group>"; };
@@ -42,7 +42,6 @@
 		0DC3571825695E18004FB1CB /* test_get_next_line.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_get_next_line.c; sourceTree = "<group>"; };
 		0DC3571925695E18004FB1CB /* test_file.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_file.txt; sourceTree = "<group>"; };
 		0DC3571A25695E18004FB1CB /* test_get_next_line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test_get_next_line.h; sourceTree = "<group>"; };
-		0DC3571B25695E18004FB1CB /* test_file copy.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "test_file copy.dict"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,15 +84,14 @@
 		0DC3571125695DEA004FB1CB /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				0D00A2FF2572B023003B7860 /* normal.txt */,
+				0D00A2FE2572B023003B7860 /* fewchar_perline.txt */,
 				0D00A3002572B023003B7860 /* 64bit_line.txt */,
-				0D00A2FD2572B023003B7860 /* 64bit_paragraph.txt */,
+				0D2599A32573DB0E0044CADD /* 64bit_paragraph.txt */,
 				0D00A2FC2572B023003B7860 /* bar.txt */,
 				0D00A3012572B023003B7860 /* empty.txt */,
-				0D00A2FE2572B023003B7860 /* fewchar_perline.txt */,
 				0D00A3022572B023003B7860 /* long_line.txt */,
-				0D00A2FF2572B023003B7860 /* normal.txt */,
 				0D00A2FB2572B023003B7860 /* only_newline.txt */,
-				0DC3571B25695E18004FB1CB /* test_file copy.dict */,
 				0DC3571925695E18004FB1CB /* test_file.txt */,
 				0DC3571825695E18004FB1CB /* test_get_next_line.c */,
 				0DC3571A25695E18004FB1CB /* test_get_next_line.h */,
@@ -296,7 +294,7 @@
 					"-Werror",
 					"-Wextra",
 					"-D",
-					"BUFFER_SIZE=10",
+					"BUFFER_SIZE=9999",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

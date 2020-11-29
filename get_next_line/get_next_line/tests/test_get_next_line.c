@@ -52,24 +52,23 @@ void	test_get_next_line(void)
 	
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
 	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
 
 	
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
 	
+	
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
-//
+
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
-//
+
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
-//
+
+	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
+	
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
-//
-//
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
 	
-	
-	
-		fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
 	
 	if (fd == -1)
 		printf("not opened\n");
@@ -84,11 +83,9 @@ void	test_get_next_line(void)
 	while (res > 0)
 	{
 		res = get_next_line(fd, &line);
-		printf("line %i: %s\n", i, line);
+		printf("%i | line %i: %s\n",res, i, line);
 		free(line);
 		i++;
-		if (res != 1)
-			break;
 	}
 
 
@@ -99,3 +96,16 @@ void	test_get_next_line(void)
 }
 
 
+// KO IN LINE     FILE_NAME : test/fewchar_perline.txt                           BUFFER_SIZE : 1              OUT: "(null)"	EXPECTED : ""		 AT_LINE : 20
+
+// here\n
+//we\n
+//have\n
+//short\n
+//strings\n
+//0\n
+//0\n
+//0\n
+//0\n
+//0\n
+//....
