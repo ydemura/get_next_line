@@ -19,19 +19,29 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int		get_next_line(int fd, char **line);
-int		ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-//void	after_n_memcpy(char *dst, char *src, size_t n);
-char	*ft_strdup_till_n(const char *s1, int len);
-char	*ft_strdup(const char *s1);
+typedef struct		s_memory
+{
+	char			left[BUFFER_SIZE + 1];
+	unsigned int	counter;
+	int				res;
+	
+}					t_memory;
+
+int					ft_strlen(const char *str);
+void				*ft_memcpy(void *restrict dst, const void *restrict src,
+							   size_t n);
+char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strdup(const char *s1);
 
 
-//int		find_copy_line(char *str, char **line);
-int		find_copy_line(char *str, char **line, char *left);
 
-
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
-char	*update_temp(char *temp, const char *buff, const char *left);
+char				*ft_strdup_till_n(const char *s1, int len);
+void				after_n_memcpy(char *left, char *temp, unsigned int n);
+void				clean_string(t_memory *memory);
+int					cut_line_and_left(char **line, t_memory *memory, int n,
+									  char *temp);
+int					ft_search_end_of_line(char **line, t_memory *memory);
+int					ft_read(int fd, t_memory *memory);
+int					get_next_line(int fd, char **line);
 
 #endif
