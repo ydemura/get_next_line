@@ -26,22 +26,23 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	after_n_memcpy(char *left, char *temp, unsigned int n)
 {
-	unsigned	int		i;
-	unsigned	char	*destination;
-	unsigned	char	*sorce;
+	unsigned int i;
+	unsigned int j;
 
-	destination = (unsigned char *)dst;
-	sorce = (unsigned char *)src;
 	i = 0;
-	while (i < n && (dst != (void *)0 || src != (void *)0))
+	j = 0;
+	while (i < n)
+		i++;
+	i++;
+	while (temp[i] != '\0')
 	{
-		destination[i] = sorce[i];
+		left[j] = temp[i];
+		j++;
 		i++;
 	}
-	destination[i] = '\0';
-	return (dst);
+	left[j] = '\0';
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -89,6 +90,24 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	}
 	while (s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
+}
+
+char	*ft_strdup_till_n(const char *s1, int len)
+{
+	int		i;
+	char	*s2;
+
+	i = 0;
+	s2 = (char *)malloc((len + 1) * sizeof(char));
+	if (s2 == NULL)
+		return (NULL);
+	while (i < len)
 	{
 		s2[i] = s1[i];
 		i++;

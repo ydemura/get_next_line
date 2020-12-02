@@ -50,9 +50,13 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
-	
+	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
+
 //	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+//	fd = open("/Users/julia/Desktop/Get_Next_Line_Tester-master/test/fewchar_perline.txt", O_RDONLY);
+//	KO IN RETURN   FILE_NAME : test/fewchar_perline.txt BUFFER_SIZE : 1
+//	OUT : 0	EXPECTED : 1 		AT LINE : 19
+	
 
 	
 //	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
@@ -66,10 +70,11 @@ void	test_get_next_line(void)
 
 //	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
 	
-	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
+//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
 	
 //	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
 	
+//	fd = 0;
 	if (fd == -1)
 		printf("not opened\n");
 	else
@@ -84,8 +89,7 @@ void	test_get_next_line(void)
 	{
 		res = get_next_line(fd, &line);
 		printf("%i | line %i: %s\n",res, i, line);
-		line = NULL;
-//		free(line);
+		free(line);
 		i++;
 	}
 
@@ -96,8 +100,12 @@ void	test_get_next_line(void)
 		printf(".......................closed\n");
 }
 
+// ISSUES
+// KO IN RETURN   FILE_NAME : test/fewchar_perline.txt BUFFER_SIZE : 1  OUT : 0	EXPECTED : 1 AT LINE : 19
 
-// KO IN LINE     FILE_NAME : test/fewchar_perline.txt                           BUFFER_SIZE : 1              OUT: "(null)"	EXPECTED : ""		 AT_LINE : 20
+// KO IN RETURN   FILE_NAME : test/only_newline.txt BUFFER_SIZE : 1 OUT : 0	EXPECTED : 1 AT LINE : 2048
+
+
 
 // here\n
 //we\n
@@ -142,6 +150,161 @@ void	test_get_next_line(void)
 // ******************************************************************** \\
 //   						OLD VERSIONS
 // ******************************************************************** \\
+
+
+
+
+
+
+//char	*ft_strdup_till_n(const char *s1, int len)
+//{
+//	int		i;
+//	char	*s2;
+//
+//	i = 0;
+//	s2 = (char *)malloc((len + 1) * sizeof(char));
+//	if (s2 == NULL)
+//		return (NULL);
+//	while (i < len)
+//	{
+//		s2[i] = s1[i];
+//		i++;
+//	}
+//	s2[i] = '\0';
+//	return (s2);
+//}
+//
+//void	after_n_memcpy(char *left, char *temp, unsigned int n)
+//{
+//	unsigned int i;
+//	unsigned int j;
+//
+//	i = 0;
+//	j = 0;
+//	while (i < n)
+//		i++;
+//	i++;
+//	while (temp[i] != '\0')
+//	{
+//		left[j] = temp[i];
+//		j++;
+//		i++;
+//	}
+//	left[j] = '\0';
+//}
+//
+//void	clean_string(t_memory *memory)
+//{
+//	int len;
+//	int i;
+//
+//	len = ft_strlen(memory->left);
+//	i = 0;
+//
+//	while (i < len)
+//	{
+//		(memory->left)[i] = '\0';
+//		i++;
+//	}
+//}
+//
+//int cut_line_and_left(char **line, t_memory *memory, int n, char *temp)
+//{
+//	while (temp[n] != '\0')
+//	{
+//		if (temp[n] == '\n')
+//		{
+//			*line = ft_strdup_till_n(temp, n);
+//			after_n_memcpy(memory->left, temp, n);
+//			free(temp);
+//			return (1);
+//		}
+//		n++;
+//	}
+//	return (0);
+//}
+//
+//int	ft_search_end_of_line(char **line, t_memory *memory)
+//{
+//	char *temp;
+//	unsigned int n = 0;
+//
+//	if (*line != NULL)
+//		temp = ft_strjoin(*line, memory->left);
+//	else
+//		temp = ft_strdup(memory->left);
+//
+//	if (memory->counter != 0)
+//	{
+//		n = memory->counter;
+//	}
+//	if (cut_line_and_left(line, memory, n, temp) == 1)
+//	{
+//		memory->counter = 0;
+//		return (1);
+//	}
+//	memory->counter = n;
+//	return (0);
+//}
+//
+//int		ft_read(int fd, t_memory *memory)
+//{
+//	memory->res = (int)read(fd, memory->left, BUFFER_SIZE);
+//	if (memory->res == -1)
+//		return (-1);
+//	memory->left[memory->res] = '\0';
+//	return (memory->res);
+//}
+//
+//int		get_next_line(int fd, char **line)
+//{
+//	static 	t_memory memory = {.counter = 0, .res = 1};
+//
+//	if (!fd || fd < 0)
+//		return (-1);
+////	*line = NULL;
+//
+//	while (memory.res > 0)
+//	{
+//		if (!*(memory.left))
+//		{
+//			if ((memory.res = ft_read(fd, &memory)) == -1)
+//				return (-1);
+//			if (memory.res == 0)
+//				*line = ft_strjoin(*line, memory.left);
+//		}
+//		else
+//		{
+//			if(ft_search_end_of_line(line, &memory) == 1)
+//				return (1);
+//			else
+//			{
+//				*line = ft_strjoin(*line, memory.left);
+//				clean_string(&memory);
+//			}
+//		}
+//	}
+//	return (0);
+//}
+
+
+
+//if (!*(memory.left))
+//{
+//	memory.res = ft_read(fd, &memory, line);
+//	if (memory.res == -1)
+//		return (-1);
+//}
+
+
+
+
+
+
+
+
+
+
 
 
 ///* ************************************************************************** */
