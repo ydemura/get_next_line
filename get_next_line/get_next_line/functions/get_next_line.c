@@ -79,9 +79,9 @@ int		get_next_line(int fd, char **line)
 {
 	static	t_memory memory;
 
-	memory.res = 1;
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (-1);
+	memory.res = 1;
 	*line = NULL;
 	while (memory.res > 0)
 	{

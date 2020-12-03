@@ -13,17 +13,19 @@
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
 
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 
 typedef struct		s_memory
 {
-	char			left[BUFFER_SIZE + 1];
 	unsigned int	counter;
 	int				res;
+	char			left[BUFFER_SIZE + 1];
 }					t_memory;
 
 int					ft_strlen(const char *str);

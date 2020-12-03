@@ -50,29 +50,27 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
-
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
-//	fd = open("/Users/julia/Desktop/Get_Next_Line_Tester-master/test/fewchar_perline.txt", O_RDONLY);
-//	KO IN RETURN   FILE_NAME : test/fewchar_perline.txt BUFFER_SIZE : 1
-//	OUT : 0	EXPECTED : 1 		AT LINE : 19
-	
+	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
 
 	
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
 	
 	
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
+	
+	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
 
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
 
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
 
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
 	
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
 	
-//	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
 	
 //	fd = 0;
 	if (fd == -1)
