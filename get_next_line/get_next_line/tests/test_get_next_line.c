@@ -72,6 +72,8 @@ void	test_get_next_line(void)
 	
 //	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
 	
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/bar.txt", O_RDONLY);
+	
 //	fd = 0;
 	if (fd == -1)
 		printf("not opened\n");
