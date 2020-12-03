@@ -18,6 +18,10 @@
 #  define BUFFER_SIZE 0
 # endif
 
+# if !BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 
