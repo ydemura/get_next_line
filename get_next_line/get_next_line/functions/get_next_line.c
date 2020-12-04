@@ -12,20 +12,6 @@
 
 #include "get_next_line.h"
 
-void	clean_string(t_memory *memory)
-{
-	int len;
-	int i;
-
-	len = ft_strlen(memory->left);
-	i = 0;
-	while (i < len)
-	{
-		(memory->left)[i] = '\0';
-		i++;
-	}
-}
-
 int		cut_line_and_left(char **line, t_memory *memory, int n, char *temp)
 {
 	while (temp[n] != '\0')
@@ -85,21 +71,18 @@ int		get_next_line(int fd, char **line)
 	*line = NULL;
 	while (memory.res > 0)
 	{
-		if (!*(memory.left))
-		{
-			if ((ft_read(fd, &memory, line)) == -1)
-				return (-1);
-		}
-		else
+		if (*(memory.left))
 		{
 			if (ft_search_end_of_line(line, &memory) == 1)
 				return (1);
 			else
 			{
 				*line = ft_strjoin(*line, memory.left);
-				clean_string(&memory);
+				*(memory.left) = '\0';
 			}
 		}
+		else if ((ft_read(fd, &memory, line)) == -1)
+			return (-1);
 	}
 	return (0);
 }

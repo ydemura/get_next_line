@@ -18,7 +18,7 @@
 #  define BUFFER_SIZE 0
 # endif
 
-# if !BUFFER_SIZE
+# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 0
 # endif
 

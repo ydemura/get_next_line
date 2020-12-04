@@ -45,36 +45,33 @@
 #include "test_get_next_line.h"
 #include "get_next_line.h"
 
+#define FIXTURES_PATH_HOME "/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/"
+#define FIXTURES_PATH_CODAM "/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/"
+#define FIXTURES_PATH FIXTURES_PATH_HOME
+
 void	test_get_next_line(void)
 {
 	int fd;
 	char *line;
 	
-	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
+	fd = open(FIXTURES_PATH"normal.txt", O_RDONLY);
+	
+//	fd = open(FIXTURES_PATH"fewchar_perline.txt", O_RDONLY);
+	
+//	fd = open(FIXTURES_PATH"64bit_line.txt", O_RDONLY);
+	
+//	fd = open(FIXTURES_PATH"64bit_paragraph.txt", O_RDONLY);
 
-	
-	
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
-	
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"empty.txt", O_RDONLY);
 
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"bar.txt", O_RDONLY);
 
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"only_newline.txt", O_RDONLY);
+	
+//	fd = open(FIXTURES_PATH"long_line.txt", O_RDONLY);
+	
+//	fd = open(FIXTURES_PATH"test_file.txt", O_RDONLY);
 
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
-	
-//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/bar.txt", O_RDONLY);
-	
-//	fd = 0;
 	if (fd == -1)
 		printf("not opened\n");
 	else
@@ -142,7 +139,34 @@ void	test_get_next_line(void)
 	
 //	fd = open("/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
 
-// *****************************************************************************************************
+
+
+// **************************************CODAM***************************************************
+
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/normal.txt", O_RDONLY);
+
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_line.txt", O_RDONLY);
+
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/64bit_paragraph.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/empty.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/fewchar_perline.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_newline.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/long_line.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/test_file.txt", O_RDONLY);
+
+//	fd = open("/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/bar.txt", O_RDONLY);
+
+//	fd = 0;
 
 
 

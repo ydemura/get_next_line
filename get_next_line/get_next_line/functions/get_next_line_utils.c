@@ -20,27 +20,21 @@ int		ft_strlen(const char *str)
 	if (!str)
 		return (0);
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }
 
 void	after_n_memcpy(char *left, char *temp, unsigned int n)
 {
-	unsigned int i;
 	unsigned int j;
 
-	i = 0;
+	n++;
 	j = 0;
-	while (i < n)
-		i++;
-	i++;
-	while (temp[i] != '\0')
+	while (temp[n] != '\0')
 	{
-		left[j] = temp[i];
+		left[j] = temp[n];
 		j++;
-		i++;
+		n++;
 	}
 	left[j] = '\0';
 }
@@ -57,12 +51,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	* sizeof(char));
 	if (new_str == NULL)
 		return (NULL);
-	while (i < ft_strlen(s1))
+	while (s1 != 0 && s1[i] != '\0')
 	{
 		new_str[i] = s1[i];
 		i++;
 	}
-	while (j < ft_strlen(s2))
+	while (s2 != 0 && s2[j] != '\0')
 	{
 		new_str[i] = s2[j];
 		i++;
@@ -74,21 +68,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_strdup(const char *s1)
 {
-	int		len;
 	int		i;
 	char	*s2;
 
 	i = 0;
-	len = 0;
-	while (s1[len] != '\0')
-	{
-		len++;
-	}
-	s2 = (char *)malloc((len + 1) * sizeof(char));
+	s2 = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
 	if (s2 == NULL)
-	{
 		return (NULL);
-	}
 	while (s1[i] != '\0')
 	{
 		s2[i] = s1[i];
