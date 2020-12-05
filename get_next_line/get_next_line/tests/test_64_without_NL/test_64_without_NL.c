@@ -16,6 +16,8 @@ void	test_64_without_NL(void)
 {
 	int fd;
 	char *line;
+	
+	//		printf("%i | line %i: %s\n",res, i, line);
 
 	fd = open(FIXTURES_PATH"64bit_line.txt", O_RDONLY);
 	assert(fd != -1);
@@ -24,11 +26,14 @@ void	test_64_without_NL(void)
 	
 	line = NULL;
 	int res;
+	int i = 1;
 	
 	res = get_next_line(fd, &line);
+//	printf("%i | line %i: %s\n",res, i, line);
 	assert(strcmp(line, "9GN+3XuFJq9SoIVEwyf9N6V0SsRGamXC+5i7fs3TQaDax3Q7obX6his/LqVswZ12") == 0);
 	assert(res == 0);
 	free(line);
+	i++;
 	
 	res = get_next_line(fd, &line);
 	assert(strcmp(line, "") == 0);

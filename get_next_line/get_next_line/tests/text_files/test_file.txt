@@ -1,4 +1,8 @@
-line\longer\then\BUFF_SIZE
+last will be very long line to see why the hell it was not working in the test. what is crashing and is anything crashing. maybe i should go home but I really want to get to some point with this function as I am already pretty tired with it
+
+aaabbbcccdddeee
+helo
+
 a
 aa
 aaa
@@ -23,3 +27,5 @@ bbb
 bb
 bb
 .
+
+last will be very long line to see why the hell it was not working in the test. what is crashing and is anything crashing. maybe i should go home but I really want to get to some point with this function as I am already pretty tired with it

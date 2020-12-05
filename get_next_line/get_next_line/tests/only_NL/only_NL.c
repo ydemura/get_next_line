@@ -39,8 +39,9 @@ void	test_only_NL(void)
 	}
 	
 	res = get_next_line(fd, &line);
-	assert(strcmp(line, "") == 0);
 	assert(res == 0);
+//	printf("%i | line %i: %s\n",res, i, line);
+	assert(strcmp(line, "") == 0);
 	free(line);
 
 	if (close(fd) < 0)

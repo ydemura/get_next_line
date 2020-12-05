@@ -53,6 +53,7 @@
 		0D1363A0257BC1C000B5E7CF /* get_next_line_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_next_line_utils.c; sourceTree = "<group>"; };
 		0D1363A1257BC1C000B5E7CF /* get_next_line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = get_next_line.h; sourceTree = "<group>"; };
 		0D1363A2257BC1C000B5E7CF /* get_next_line.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_next_line.c; sourceTree = "<group>"; };
+		0D1363A5257BCF3B00B5E7CF /* info file.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "info file.strings"; sourceTree = "<group>"; };
 		0DC3570725695DC8004FB1CB /* get_next_line */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = get_next_line; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DC3570A25695DC8004FB1CB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		0DC3571825695E18004FB1CB /* test_get_next_line.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_get_next_line.c; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 		0DC3571125695DEA004FB1CB /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				0D1363A5257BCF3B00B5E7CF /* info file.strings */,
 				0D136385257BB91A00B5E7CF /* only_NL */,
 				0D136375257BAE1500B5E7CF /* test_empty */,
 				0D136378257BB23000B5E7CF /* test_fewchars */,
@@ -372,7 +374,7 @@
 					"-Werror",
 					"-Wextra",
 					"-D",
-					"BUFFER_SIZE=2",
+					"BUFFER_SIZE=10",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
