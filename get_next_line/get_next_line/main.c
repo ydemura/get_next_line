@@ -12,8 +12,14 @@
 
 int main() //int argc, const char * argv[]
 {
-	// insert code here...
 	test_get_next_line();
 	
+//	test_only_NL();
+//	test_empty_file();
+//	test_fewchars();
+//	test_longline();
+//	test_64_without_NL(); //after this one there is weird behaviour in test god knows why
+	
+//	system ("leaks a.out");
 	return 0;
 }

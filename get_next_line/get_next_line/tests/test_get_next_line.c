@@ -45,18 +45,17 @@
 #include "test_get_next_line.h"
 #include "get_next_line.h"
 
-#define FIXTURES_PATH_HOME "/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/"
-#define FIXTURES_PATH_CODAM "/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/"
-#define FIXTURES_PATH FIXTURES_PATH_HOME
+#define FIXTURES_PATH_HOME "/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/text_files/"
+#define FIXTURES_PATH_CODAM "/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/text_files/"
 
 void	test_get_next_line(void)
 {
 	int fd;
 	char *line;
 	
-	fd = open(FIXTURES_PATH"normal.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"normal.txt", O_RDONLY);
 	
-//	fd = open(FIXTURES_PATH"fewchar_perline.txt", O_RDONLY);
+	fd = open(FIXTURES_PATH"fewchar_perline.txt", O_RDONLY);
 	
 //	fd = open(FIXTURES_PATH"64bit_line.txt", O_RDONLY);
 	
