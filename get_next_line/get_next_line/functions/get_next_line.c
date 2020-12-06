@@ -19,6 +19,7 @@ int		return_management(char **line, t_memory *memory)
 		if (*line)
 		{
 			free(*line);
+			*line = NULL;
 		}
 		return (-1);
 	}
@@ -38,9 +39,9 @@ int		cut_line_and_left(char **line, t_memory *memory, char *temp)
 	{
 		if (temp[n] == '\n')
 		{
-			*line = ft_strdup_till_n(temp, n);
-			if (!*line)
-				memory->status = -1;
+			*line = ft_strdup_till_n(temp, n, memory);
+			if (memory->status == -1)
+				return (-1);
 			after_n_memcpy(memory->left, temp, n);
 			return (1);
 		}
@@ -66,10 +67,10 @@ int		find_cut_new_line(t_memory *memory, char **line)
 		memory->status = 1;
 		return (1);
 	}
-	*line = ft_strdup_till_n(temp, ft_strlen(temp));
+	*line = ft_strdup_till_n(temp, ft_strlen(temp), memory);
 	free(temp);
-	if (!line)
-		memory->status = -1;
+	if (memory->status == -1)
+		return (-1);
 	*(memory->left) = '\0';
 	return (0);
 }
