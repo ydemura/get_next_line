@@ -6,7 +6,7 @@
 /*   By: ydemura <ydemura@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:12:46 by ydemura       #+#    #+#                 */
-/*   Updated: 2020/12/06 11:53:43 by ydemura       ########   odam.nl         */
+/*   Updated: 2020/12/06 15:54:41 by ydemura       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_memory
 }					t_memory;
 
 int					ft_strlen(const char *str);
-char				*ft_strdup_till_n(const char *s1, int len);
+char				*ft_strdup_till_n(const char *s1, int len, t_memory *memory);
 void				after_n_memcpy(char *left, char *temp, unsigned int n);
 char				*ft_realloc(char **line, int new_len, t_memory *memory);
 char				*ft_strjoin_realloc(char *s1, t_memory *memory);

@@ -17,19 +17,19 @@ void	test_get_next_line(void)
 	int fd;
 	char *line;
 	
-	fd = open(FIXTURES_PATH"normal.txt", O_RDONLY);
+	// fd = open(FIXTURES_PATH"normal.txt", O_RDONLY);
 	
 	// fd = open(FIXTURES_PATH"fewchar_perline.txt", O_RDONLY);
 	
-	// fd = open(FIXTURES_PATH"64bit_line.txt", O_RDONLY);
+	fd = open(FIXTURES_PATH"64bit_line.txt", O_RDONLY);
 	
-	// fd = open(FIXTURES_PATH"64bit_paragraph.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"64bit_paragraph.txt", O_RDONLY);
 
-	// fd = open(FIXTURES_PATH"empty.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"empty.txt", O_RDONLY);
 
-	// fd = open(FIXTURES_PATH"bar.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"bar.txt", O_RDONLY);
 
-	// fd = open(FIXTURES_PATH"only_newline.txt", O_RDONLY);
+//	fd = open(FIXTURES_PATH"only_newline.txt", O_RDONLY);
 	
 	// fd = open(FIXTURES_PATH"long_line.txt", O_RDONLY);
 	
@@ -52,8 +52,8 @@ void	test_get_next_line(void)
 		free(line);
 		i++;
 	}
-
 	system ("leaks a.out");
+
 	if (close(fd) < 0)
 		printf("not closed\n");
 	else

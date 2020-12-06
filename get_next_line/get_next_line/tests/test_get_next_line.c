@@ -31,7 +31,7 @@ void	test_get_next_line(void)
 //	fd = open(FIXTURES_PATH"bar.txt", O_RDONLY);
 
 //	fd = open(FIXTURES_PATH"only_newline.txt", O_RDONLY);
-	
+
 //	fd = open(FIXTURES_PATH"long_line.txt", O_RDONLY);
 	
 	fd = open(FIXTURES_PATH"test_file.txt", O_RDONLY);
@@ -60,3 +60,8 @@ void	test_get_next_line(void)
 	else
 		printf(".......................closed\n");
 }
+
+
+// ft_strdup_till_n BS 100, normal.txt
+
+// BS 2000 give 42 1 return and null + 43 -1 null. wtf

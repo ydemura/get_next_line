@@ -6,7 +6,7 @@
 /*   By: ydemura <ydemura@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:12:36 by ydemura       #+#    #+#                 */
-/*   Updated: 2020/12/06 11:49:26 by ydemura       ########   odam.nl         */
+/*   Updated: 2020/12/06 16:23:13 by ydemura       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		return_management(char **line, t_memory *memory)
 		if (*line)
 		{
 			free(*line);
+			*line = NULL;
 		}
 		return (-1);
 	}
@@ -38,9 +39,9 @@ int		cut_line_and_left(char **line, t_memory *memory, char *temp)
 	{
 		if (temp[n] == '\n')
 		{
-			*line = ft_strdup_till_n(temp, n);
-			if (!*line)
-				memory->status = -1;
+			*line = ft_strdup_till_n(temp, n, memory);
+			if (memory->status == -1)
+				return (-1);
 			after_n_memcpy(memory->left, temp, n);
 			return (1);
 		}
@@ -66,10 +67,10 @@ int		find_cut_new_line(t_memory *memory, char **line)
 		memory->status = 1;
 		return (1);
 	}
-	*line = ft_strdup_till_n(temp, ft_strlen(temp));
+	*line = ft_strdup_till_n(temp, ft_strlen(temp), memory);
 	free(temp);
-	if (!line)
-		memory->status = -1;
+	if (memory->status == -1)
+		return (-1);
 	*(memory->left) = '\0';
 	return (0);
 }
@@ -97,7 +98,7 @@ int		get_next_line(int fd, char **line)
 {
 	static	t_memory memory;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || line == NULL)
 		return (-1);
 	memory.res = 1;
 	memory.status = 0;

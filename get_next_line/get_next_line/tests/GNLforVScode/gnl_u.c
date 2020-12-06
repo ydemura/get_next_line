@@ -6,7 +6,7 @@
 /*   By: ydemura <ydemura@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:12:43 by ydemura       #+#    #+#                 */
-/*   Updated: 2020/12/06 11:31:34 by ydemura       ########   odam.nl         */
+/*   Updated: 2020/12/06 16:30:06 by ydemura       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup_till_n(const char *s1, int len)
+char	*ft_strdup_till_n(const char *s1, int len, t_memory *memory)
 {
 	int		i;
 	char	*s2;
 
 	i = 0;
 	s2 = (char *)malloc((len + 1) * sizeof(char));
+	// s2 = NULL;
 	if (s2 == NULL)
-		return (NULL);
+	{
+		memory->status = -1;
+		return (0);
+	}
 	while (i < len)
 	{
 		s2[i] = s1[i];
@@ -65,12 +69,14 @@ char	*ft_realloc(char **line, int new_len, t_memory *memory)
 	len = ft_strlen(*line);
 	if (!*line)
 	{
-		new_line = malloc(new_len + 1);
+		new_line = malloc((new_len + 1) * sizeof(char));
+		// new_line = NULL;
 		if (!new_line)
 			memory->status = -1;
 		return (new_line);
 	}
 	new_line = malloc((new_len + 1) * sizeof(char));
+	// new_line = NULL;
 	if (!new_line)
 	{
 		memory->status = -1;
@@ -88,7 +94,7 @@ char	*ft_strjoin_realloc(char *s1, t_memory *memory)
 	j = 0;
 	s2 = ft_realloc(&s1, (ft_strlen(memory->left) + ft_strlen(s1)), memory);
 	if (!s2)
-		memory->status = -1;
+		return (0);
 	while (s1 != 0 && s1[i] != '\0')
 	{
 		s2[i] = s1[i];
