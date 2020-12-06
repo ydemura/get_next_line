@@ -6,7 +6,7 @@
 /*   By: ydemura <ydemura@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:12:43 by ydemura       #+#    #+#                 */
-/*   Updated: 2020/12/05 22:25:18 by ydemura       ########   odam.nl         */
+/*   Updated: 2020/12/06 11:31:34 by ydemura       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,6 @@ int		ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
-}
-
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
-{
-	unsigned	int		i;
-	unsigned	char	*destination;
-	unsigned	char	*sorce;
-
-	if (!src)
-		return(0);
-	destination = (unsigned char *)dst;
-	sorce = (unsigned char *)src;
-	i = 0;
-	while (i < n && (dst != (void *)0 || src != (void *)0))
-	{
-		destination[i] = sorce[i];
-		i++;
-	}
-	destination[i] = '\0';
-	return (dst);
 }
 
 char	*ft_strdup_till_n(const char *s1, int len)
@@ -61,5 +41,66 @@ char	*ft_strdup_till_n(const char *s1, int len)
 	s2[i] = '\0';
 	return (s2);
 }
-// he ll o\n wo rl d\n hi 0
 
+void	after_n_memcpy(char *left, char *temp, unsigned int n)
+{
+	unsigned int j;
+
+	n++;
+	j = 0;
+	while (temp[n] != '\0')
+	{
+		left[j] = temp[n];
+		j++;
+		n++;
+	}
+	left[j] = '\0';
+}
+
+char	*ft_realloc(char **line, int new_len, t_memory *memory)
+{
+	int		len;
+	char	*new_line;
+
+	len = ft_strlen(*line);
+	if (!*line)
+	{
+		new_line = malloc(new_len + 1);
+		if (!new_line)
+			memory->status = -1;
+		return (new_line);
+	}
+	new_line = malloc((new_len + 1) * sizeof(char));
+	if (!new_line)
+	{
+		memory->status = -1;
+	}
+	return (new_line);
+}
+
+char	*ft_strjoin_realloc(char *s1, t_memory *memory)
+{
+	char	*s2;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	s2 = ft_realloc(&s1, (ft_strlen(memory->left) + ft_strlen(s1)), memory);
+	if (!s2)
+		memory->status = -1;
+	while (s1 != 0 && s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	while (*(memory->left) != 0 && memory->left[j] != '\0')
+	{
+		s2[i] = memory->left[j];
+		i++;
+		j++;
+	}
+	s2[i] = '\0';
+	free(s1);
+	return (s2);
+}

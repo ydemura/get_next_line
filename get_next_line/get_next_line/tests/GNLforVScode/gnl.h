@@ -6,29 +6,26 @@
 /*   By: ydemura <ydemura@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/21 13:12:46 by ydemura       #+#    #+#                 */
-/*   Updated: 2020/12/05 20:19:17 by ydemura       ########   odam.nl         */
+/*   Updated: 2020/12/06 11:53:43 by ydemura       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_GET_NEXT_LINE_H
 # define FT_GET_NEXT_LINE_H
 
+#define FIXTURES_PATH FIXTURES_PATH_CODAM
+//#define FIXTURES_PATH FIXTURES_PATH_HOME
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
 # if BUFFER_SIZE < 0
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 0
 # endif
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 0
-# endif
-
 # include <unistd.h>
 # include <stdlib.h>
-
-
-#define FIXTURES_PATH FIXTURES_PATH_CODAM
-//#define FIXTURES_PATH FIXTURES_PATH_HOME
-
 #include <stdio.h>
 #include<sys/types.h>
 #include<sys/stat.h>
@@ -37,24 +34,23 @@
 #include <assert.h>
 #include <string.h>
 
-void	test_get_next_line(void);
-void	test_empty_file(void);
-void	test_fewchars(void);
-void	test_longline(void);
-void	test_64_without_NL(void);
-void	test_only_NL(void);
+typedef struct		s_memory
+{
+	int				res;
+	int				status;
+	char			left[BUFFER_SIZE + 1];
+}					t_memory;
 
-//typedef struct		s_memory
-//{
-//	unsigned int	counter;
-//	int				res;
-//	char			left[BUFFER_SIZE + 1];
-//}					t_memory;
-//
 int					ft_strlen(const char *str);
+char				*ft_strdup_till_n(const char *s1, int len);
+void				after_n_memcpy(char *left, char *temp, unsigned int n);
+char				*ft_realloc(char **line, int new_len, t_memory *memory);
+char				*ft_strjoin_realloc(char *s1, t_memory *memory);
+int					return_management(char **line, t_memory *memory);
+int					cut_line_and_left(char **line, t_memory *memory,
+	char *temp);
+int					find_cut_new_line(t_memory *memory, char **line);
+int					ft_read(int fd, t_memory *memory, char **line);
 int					get_next_line(int fd, char **line);
-void				*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
-char	*ft_strdup_till_n(const char *s1, int len);
-
 
 #endif
