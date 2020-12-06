@@ -374,7 +374,7 @@
 					"-Werror",
 					"-Wextra",
 					"-D",
-					"BUFFER_SIZE=10",
+					"BUFFER_SIZE=32",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

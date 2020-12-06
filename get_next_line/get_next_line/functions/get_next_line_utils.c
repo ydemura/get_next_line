@@ -24,66 +24,6 @@ int		ft_strlen(const char *str)
 	return (i);
 }
 
-void	after_n_memcpy(char *left, char *temp, unsigned int n)
-{
-	unsigned int j;
-
-	n++;
-	j = 0;
-	while (temp[n] != '\0')
-	{
-		left[j] = temp[n];
-		j++;
-		n++;
-	}
-	left[j] = '\0';
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*new_str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	new_str = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1)
-	* sizeof(char));
-	if (new_str == NULL)
-		return (NULL);
-	while (s1 != 0 && s1[i] != '\0')
-	{
-		new_str[i] = s1[i];
-		i++;
-	}
-	while (s2 != 0 && s2[j] != '\0')
-	{
-		new_str[i] = s2[j];
-		i++;
-		j++;
-	}
-	new_str[i] = '\0';
-	return (new_str);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*s2;
-
-	i = 0;
-	s2 = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
-	if (s2 == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
-}
-
 char	*ft_strdup_till_n(const char *s1, int len)
 {
 	int		i;
@@ -99,5 +39,68 @@ char	*ft_strdup_till_n(const char *s1, int len)
 		i++;
 	}
 	s2[i] = '\0';
+	return (s2);
+}
+
+void	after_n_memcpy(char *left, char *temp, unsigned int n)
+{
+	unsigned int j;
+
+	n++;
+	j = 0;
+	while (temp[n] != '\0')
+	{
+		left[j] = temp[n];
+		j++;
+		n++;
+	}
+	left[j] = '\0';
+}
+
+char	*ft_realloc(char **line, int new_len, t_memory *memory)
+{
+	int		len;
+	char	*new_line;
+
+	len = ft_strlen(*line);
+	if (!*line)
+	{
+		new_line = malloc(new_len + 1);
+		if (!new_line)
+			memory->status = -1;
+		return (new_line);
+	}
+	new_line = malloc((new_len + 1) * sizeof(char));
+	if (!new_line)
+	{
+		memory->status = -1;
+	}
+	return (new_line);
+}
+
+char	*ft_strjoin_realloc(char *s1, t_memory *memory)
+{
+	char	*s2;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	s2 = ft_realloc(&s1, (ft_strlen(memory->left) + ft_strlen(s1)), memory);
+	if (!s2)
+		memory->status = -1;
+	while (s1 != 0 && s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	while (*(memory->left) != 0 && memory->left[j] != '\0')
+	{
+		s2[i] = memory->left[j];
+		i++;
+		j++;
+	}
+	s2[i] = '\0';
+	free(s1);
 	return (s2);
 }

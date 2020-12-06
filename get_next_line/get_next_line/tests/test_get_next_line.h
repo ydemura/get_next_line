@@ -10,8 +10,8 @@
 #ifndef test_get_next_line_h
 #define test_get_next_line_h
 
-#define FIXTURES_PATH FIXTURES_PATH_CODAM
-//#define FIXTURES_PATH FIXTURES_PATH_HOME
+//#define FIXTURES_PATH FIXTURES_PATH_CODAM
+#define FIXTURES_PATH FIXTURES_PATH_HOME
 
 #include <stdio.h>
 #include<sys/types.h>
