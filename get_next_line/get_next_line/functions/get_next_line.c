@@ -97,6 +97,8 @@ int		get_next_line(int fd, char **line)
 {
 	static	t_memory memory;
 
+	if (fd < 0 || BUFFER_SIZE < 1 || line == NULL)
+		return (-1);
 	memory.res = 1;
 	memory.status = 0;
 	*line = NULL;

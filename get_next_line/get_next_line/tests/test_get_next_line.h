@@ -10,8 +10,8 @@
 #ifndef test_get_next_line_h
 #define test_get_next_line_h
 
-//#define FIXTURES_PATH FIXTURES_PATH_CODAM
-#define FIXTURES_PATH FIXTURES_PATH_HOME
+#define FIXTURES_PATH FIXTURES_PATH_CODAM
+//#define FIXTURES_PATH FIXTURES_PATH_HOME
 
 #include <stdio.h>
 #include<sys/types.h>
@@ -27,5 +27,7 @@ void	test_fewchars(void);
 void	test_longline(void);
 void	test_64_without_NL(void);
 void	test_only_NL(void);
+
+void	test_wrong_input(void);
 
 #endif /* test_get_next_line_h */
