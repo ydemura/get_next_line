@@ -9,8 +9,8 @@
 #include "test_get_next_line.h"
 #include "get_next_line.h"
 
-#define FIXTURES_PATH_HOME "/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/only_NL/"
-#define FIXTURES_PATH_CODAM "/Users/ydemura/Desktop/get_next_line/get_next_line/get_next_line/tests/only_NL/"
+//#define FIXTURES_PATH_HOME "/Users/julia/Desktop/GNL/get_next_line/get_next_line/tests/only_NL/"
+#define FIXTURES_PATH_CODAM "/Users/ydemura/Desktop/GNL_LASTversion/get_next_line/get_next_line/tests/only_NL/"
 
 void	test_only_NL(void)
 {
